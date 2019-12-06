@@ -14,6 +14,13 @@ export default class FacebookLoginBtn extends React.Component {
 
     responseFacebook = (response) => {
         console.log(response)
+        if (response.status !== 'unknown') {
+            this.setState({
+                auth: true,
+                name: response.name,
+                picture: response.picture.data.url
+            })
+        }   
     }
 
     render() {
@@ -21,13 +28,14 @@ export default class FacebookLoginBtn extends React.Component {
         let facebookData
         this.state.auth ? facebookData = (
             <div>
-                Hi!
+                <img src={this.state.picture} alt={this.state.name} />
+                <h2>Welcome {this.state.name}!</h2>
             </div>
         ) : facebookData = (
             <FacebookLogin
                 appId="768969656910713"
                 autoLoad={true}
-                fields="name,picture"
+                fields="name,picture,email"
                 onClick={this.componentClicked}
                 callback={this.responseFacebook} 
             />
