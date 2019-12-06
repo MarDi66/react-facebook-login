@@ -8,6 +8,14 @@ export default class FacebookLoginBtn extends React.Component {
         picture: ''
     }
 
+    componentClicked = () => {
+        console.log('component click')
+    }
+
+    responseFacebook = (response) => {
+        console.log(response)
+    }
+
     render() {
 
         let facebookData
@@ -17,11 +25,11 @@ export default class FacebookLoginBtn extends React.Component {
             </div>
         ) : facebookData = (
             <FacebookLogin
-                appId="1088597931155576"
+                appId="768969656910713"
                 autoLoad={true}
                 fields="name,picture"
-                onClick={componentClicked}
-                callback={responseFacebook} 
+                onClick={this.componentClicked}
+                callback={this.responseFacebook} 
             />
         )
 
